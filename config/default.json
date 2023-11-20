@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb://waqas:waqas123@ac-lvvbzsb-shard-00-00.wlitxbx.mongodb.net:27017,ac-lvvbzsb-shard-00-01.wlitxbx.mongodb.net:27017,ac-lvvbzsb-shard-00-02.wlitxbx.mongodb.net:27017/?ssl=true&replicaSet=atlas-imvduk-shard-0&authSource=admin&retryWrites=true&w=majority",
+  "jwtSecret": "mySecretToken"
+}
