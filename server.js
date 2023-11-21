@@ -18,3 +18,11 @@ app.use("/api/events", require("./routes/api/events"));
 
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}!`));
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
