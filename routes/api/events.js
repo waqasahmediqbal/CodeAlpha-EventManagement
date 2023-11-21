@@ -32,6 +32,30 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// @router  GET api/events/:eventId
+// @description: get event by id
+router.get("/:eventId", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    const eventId = req.params.eventId;
+
+    // Find the event by ID
+    const event = user.events.find((event) => event.id === eventId);
+
+    if (!event) {
+      return res.status(404).json({ msg: "Event not found" });
+    }
+
+    res.json(event);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @router  POST api/events
 // @description: add new event
 router.post(
