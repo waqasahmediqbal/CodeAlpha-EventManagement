@@ -19,7 +19,7 @@ const upload = multer({ storage: storage });
 
 // @router  GET api/events
 // @description: get all events
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     if (!user) {
@@ -34,7 +34,7 @@ router.get("/", auth, async (req, res) => {
 
 // @router  GET api/events/:eventId
 // @description: get event by id
-router.get("/:eventId", auth, async (req, res) => {
+router.get("/:eventId", async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     if (!user) {
