@@ -32,6 +32,30 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// @router  GET api/events/:eventId
+// @description: get event by id
+router.get("/:eventId", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    const eventId = req.params.eventId;
+
+    // Find the event by ID
+    const event = user.events.find((event) => event.id === eventId);
+
+    if (!event) {
+      return res.status(404).json({ msg: "Event not found" });
+    }
+
+    res.json(event);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @router  POST api/events
 // @description: add new event
 router.post(
@@ -57,6 +81,8 @@ router.post(
         category,
         status,
         date,
+        fromTime,
+        endTime
       } = req.body;
       const picturePath = req.file ? req.file.path : '';
       const newEvent = {
@@ -69,6 +95,8 @@ router.post(
         status,
         picture: picturePath,
         date,
+        fromTime,
+        endTime
       };
 
       user.events.unshift(newEvent);
@@ -114,6 +142,8 @@ router.put(
         category: req.body.category,
         status: req.body.status,
         date: req.body.date,
+        fromTime: req.body.fromTime,
+        endTime: req.body.endTime
       };
       if (req.file) {
         user.events[eventIndex].picture = req.file.path;

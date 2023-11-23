@@ -51,6 +51,14 @@ const UserSchema = new mongoose.Schema({
         type: Date,
         required: true
       },
+      fromTime: {
+        type: String,
+        required: true,
+      },
+      endTime: {
+        type: String,
+        required: true,
+      },
     },
   ],
 });
