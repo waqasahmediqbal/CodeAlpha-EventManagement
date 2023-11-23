@@ -81,6 +81,8 @@ router.post(
         category,
         status,
         date,
+        fromTime,
+        endTime
       } = req.body;
       const picturePath = req.file ? req.file.path : '';
       const newEvent = {
@@ -93,6 +95,8 @@ router.post(
         status,
         picture: picturePath,
         date,
+        fromTime,
+        endTime
       };
 
       user.events.unshift(newEvent);
@@ -138,6 +142,8 @@ router.put(
         category: req.body.category,
         status: req.body.status,
         date: req.body.date,
+        fromTime: req.body.fromTime,
+        endTime: req.body.endTime
       };
       if (req.file) {
         user.events[eventIndex].picture = req.file.path;
